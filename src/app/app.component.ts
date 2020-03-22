@@ -7,9 +7,12 @@ import { WikipediaService } from './wikipedia.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  pages = [];
 
   constructor(private wikipedia: WikipediaService) {}
    onTerm(term: string) {
-    console.log(this.wikipedia.search(term));
+    this.wikipedia.search(term).subscribe((pages) => {
+      this.pages = pages;
+    });
   }
  }
